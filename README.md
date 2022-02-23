@@ -13,4 +13,5 @@ set spell
 CocInstall coc-snippets
 CocInstall coc-json
 CocInstall coc-prettier
+:CocInstall coc-pyright
 ```
