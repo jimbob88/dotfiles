@@ -12,6 +12,14 @@ call plug#begin()
     " Plug 'Shougo/deoplete.nvim', {'do': 'UpdateRemotePlugins'}
     " Plug 'Shougo/neosnippet.vim'
     " Plug 'Shougo/neosnippet-snippets'
+    
+    " File Explorer
+    Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'kyazdani42/nvim-tree.lua'
+
+    " Bracket pairs
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'vim-syntastic/syntastic'
 call plug#end()
 
 " Snippets
@@ -110,3 +118,36 @@ command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 
 " Add spell check
 :setlocal spell spelllang=en_gb
+
+" File Explorer
+:lua require'nvim-tree'.setup()
+nnoremap <C-n> :NvimTreeToggle<CR>
+nnoremap <leader>r :NvimTreeRefresh<CR>
+nnoremap <leader>n :NvimTreeFindFile<CR>
+
+" Tab switch
+nnoremap <C-Left> :tabprevious<CR>                                                                            
+nnoremap <C-Right> :tabnext<CR>
+nnoremap <C-j> :tabprevious<CR>                                                                            
+nnoremap <C-k> :tabnext<CR>
+
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_html_checkers = ['validator', 'w3']
+g:syntastic_python_checkers = ['flake8']
+
+" show characters
+:set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+
+
+
+nnoremap <F5> :set invlist<CR>
+nnoremap <F6> :w !diff % -<CR>
